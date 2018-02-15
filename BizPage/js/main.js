@@ -173,4 +173,108 @@ jQuery(document).ready(function( $ ) {
          $('#myModal').modal('show');
     });
 
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  // Draw the chart and set the chart values
+  function drawChart() {
+    var data1 = google.visualization.arrayToDataTable([
+    ['Market', 'Quantity'],
+    ['Retailer', 25],
+    ['Sub Wholesaler', 5],
+    ['Wholesaler', 10],
+    ['Small/Marginal farmer', 30],
+    ['Village level Trader', 10],
+    ['Market level commission agent', 20]
+  ]);
+
+    var data2 = google.visualization.arrayToDataTable([
+    ['Market', 'Quantity'],
+    ['Saves', 35],
+    ['Retailer', 15],
+    ['Small/Marginal farmer', 40],
+    ['Wholesaler', 10]
+  ]);
+
+    // Optional; add a title and set the width and height of the chart
+    var options1 = {'title':'Present Market', 'width':550, 'height':300};
+    var options2 = {'title':'KLF Market', 'width':550, 'height':300};
+
+    // Display the chart inside the <div> element with id="piechart"
+    var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
+    var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+    chart1.draw(data1, options1);
+    chart2.draw(data2, options2);
+  }
+
+  window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,
+    title:{
+        text: "Progression"
+    },
+    axisY: {
+        title: "Number of Franchises",
+        titleFontColor: "#4F81BC",
+        lineColor: "#4F81BC",
+        labelFontColor: "#4F81BC",
+        tickColor: "#4F81BC"
+    },
+    axisY2: {
+        title: "Number of Farmers",
+        titleFontColor: "#C0504E",
+        lineColor: "#C0504E",
+        labelFontColor: "#C0504E",
+        tickColor: "#C0504E"
+    },
+    toolTip: {
+        shared: true
+    },
+    legend: {
+        cursor:"pointer",
+        itemclick: toggleDataSeries
+    },
+    data: [
+    {
+        type: "column",
+        name: "Franchises",
+        legendText: "Franchises",
+        showInLegend: true,
+        dataPoints:[
+            { label: "2017", y: 30 },
+            { label: "2018", y: 30 },
+            { label: "2019", y: 60 },
+            { label: "2020", y: 90 },
+            { label: "2021", y: 120 }
+        ]
+    },
+    {
+        type: "column",
+        name: "Farmers",
+        legendText: "Farmers",
+        axisYType: "secondary",
+        showInLegend: true,
+        dataPoints:[
+            { label: "2017", y: 200 },
+            { label: "2018", y: 400 },
+            { label: "2019", y: 800 },
+            { label: "2020", y: 1600 },
+            { label: "2021", y: 3000 }
+        ]
+    }]
+});
+chart.render();
+
+function toggleDataSeries(e) {
+    if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+    }
+    else {
+        e.dataSeries.visible = true;
+    }
+    chart.render();
+}
+
+}
+
 });
