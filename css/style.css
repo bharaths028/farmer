@@ -81,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header.header-scrolled {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(24, 210, 110, 1);
   padding: 20px 0;
   height: 72px;
   transition: all 0.5s;
@@ -354,7 +354,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu li:hover > a, .nav-menu > .menu-active > a {
-  color: #18d26e;
+  color: #000000;
 }
 
 .nav-menu > li {
